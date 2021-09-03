@@ -18,6 +18,16 @@ export const uiReducer = (state = initialState, action) => {
                 ...state,
                 msgError: null
             };
+        case type.uiStartLoading:
+            return {
+                ...state,
+                loading: true
+            };
+        case type.uiFinishLoading:
+            return {
+                ...state,
+                loading: false
+            };
         default:
             return state;
     };
