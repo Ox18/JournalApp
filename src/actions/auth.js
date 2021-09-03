@@ -3,9 +3,10 @@ import { type } from '../types/types';
 
 export const startLoginEmailWithPassword = (email, password) => {
     return (dispatch) => {
-        setTimeout(() => {
-            dispatch(login(123, 'Wilmer'));
-        }, 3500);
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(({ user }) => {
+            dispatch(login(user.uid, user.displayName));
+        })
     }
 };
 
