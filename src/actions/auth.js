@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 import { type } from '../types/types';
 import { startLoading, finishLoading } from './ui';
@@ -12,6 +14,14 @@ export const startLoginEmailWithPassword = (email, password) => {
             dispatch(login(user.uid, user.displayName));
             dispatch(finishLoading());
         })
+        .catch((e) => {
+            dispatch(finishLoading());
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: e.message
+            });
+        });
     }
 };
 
